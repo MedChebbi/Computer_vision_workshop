@@ -8,7 +8,7 @@ def main():
     print(img.shape)
     w , h , c = img.shape
     print('image height: ', h)
-    print('image width: ', h)
+    print('image width: ', w)
 
     resized_img = cv2.resize(img, (w//2, h//2), interpolation=cv2.INTER_AREA)
     cv2.imwrite(save_path, resized_img)
