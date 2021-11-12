@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 
+
 def main():
     img_path = '../resources/lena.png'
     save_path = '../resources/lena_resized.png'
