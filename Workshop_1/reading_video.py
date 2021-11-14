@@ -17,13 +17,15 @@ if __name__ == '__main__':
         ret, frame = vid_cap.read()
         frame = cv2.resize(frame, (w, h), interpolation=cv2.INTER_AREA)
         if ret:
-            vid_writer.write(frame)
+            
             cv2.imshow("frame",frame)
-            #cv2.imshow("frame_2",debug_frame_2)
+          
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
-    if save_vid:
-        vid_writer.release()
+        if save_vid:
+            vid_writer.write(frame)
+
+    if save_vid: vid_writer.release()
     # When everything done, release the video capture object
     vid_cap.release()
     # Closes all the frames
