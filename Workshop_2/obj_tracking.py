@@ -9,7 +9,7 @@ import time
 #tracker = cv2.legacy_TrackerTLD_create()
 #tracker = cv2.legacy_TrackerMedianFlow_create()
 #tracker = cv2.legacy_TrackerCSRT_create()
-#tracker = cv2.legacy_TrackerMOSSE.create()
+#tracker = cv2.TrackerMOSSE_create()
 
 ########################################################
 
@@ -54,4 +54,5 @@ while True:
     cv2.imshow("Tracking", img)
     if cv2.waitKey(1) & 0xff == ord('q'):
        break
+    
 '''
