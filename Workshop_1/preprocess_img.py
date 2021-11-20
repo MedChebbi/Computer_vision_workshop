@@ -20,6 +20,7 @@ new_image = cv2.convertScaleAbs(img, alpha=0.75, beta=-30)
 #Showing results
 cv2.imshow('img',img)
 cv2.imshow('gray-img',gray_img)
+cv2.imshow('cropped-img',cropped_img)
 cv2.imshow('inv_img', inv_img)
 cv2.waitKey(0)
 

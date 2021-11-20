@@ -1,11 +1,19 @@
 # Computer_vision_workshop
 ## Outline
 - Introduction to computer vision and digital images
-- Image processing basics
-- Color blob and shape based detection
-- Face detection (HaarCascade, Mediapipe)
-- Face recognition 
-- Object detection and tracking
-- Image segmentation
-- Hand and pose tracking
+- Reading, saving and displaying images and video
+- Image labeling
+- OpenCv GUI basics
+- Image filtering
+- Image transformation
+- Color based segmentation
+- Line detection
+- Image classification
+- QR and barecode detection
+- Object detection
+## Prerequirements
+- Python3
 ## Requirements
+- Numpy
+- OpenCv
+- Pizbar

@@ -1,45 +1,25 @@
 import cv2
 import numpy as np
 
-def cluster_det(img_gray):
-    filtered_cnts = []
-    # Blur the image for better edge detection
-    img_blur = cv2.GaussianBlur(img_gray, (3,3), 0) 
-    kernel = np.ones((3,3),np.uint8)
-    # Canny Edge Detection
-    edges = cv2.Canny(img_blur, 20, 350)
-    lap = cv2.Laplacian(img_blur, cv2.CV_64F)
-    lap = np.uint8(np.absolute(lap))
-    #cv2.imshow('laplacien Edge Detection', lap)
-        
-    sobelX = cv2.Sobel(img_blur, cv2.CV_64F, 1, 0)
-    sobelY = cv2.Sobel(img_blur, cv2.CV_64F, 0, 1)
-    sobelX = np.uint8(np.absolute(sobelX))
-    sobelY = np.uint8(np.absolute(sobelY))
-    sobelCombined = cv2.bitwise_or(sobelX, sobelY)
-    sum_edges = cv2.bitwise_or(sobelCombined, edges)
-    final_edges = cv2.bitwise_or(sum_edges, lap)
-    erosion = cv2.erode(final_edges,kernel,iterations = 2)
-    dilation = cv2.dilate(final_edges,kernel,iterations = 2)
+imgOrange = cv2.imread('../resources/images/orange.jpg')
+imgOrange = cv2.resize(imgOrange, (imgOrange.shape[1]//2,imgOrange.shape[0]//2))
+imgOrangeCopy = imgOrange.copy()
 
-    opening = cv2.morphologyEx(final_edges, cv2.MORPH_OPEN, kernel)
-    
-    contours, hierarchy = cv2.findContours(dilation.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-    for cnt in contours:
-        area = cv2.contourArea(cnt)
-        print(area)
-        if area > 500:
-            filtered_cnts.append(cnt)
-    #cv2.imshow('sobelCombined Edge Detection', sobelCombined)
-    cv2.imshow('final_edges Edge Detection', final_edges)
-    # Display Canny Edge Detection Image
-    #cv2.imshow('Canny Edge Detection', edges)
-    #cv2.imshow('img_blur', img_blur)
-    cv2.imshow('opening', dilation)   
-    return filtered_cnts
-    
-def main():
-    return None
+#Apply the canny filter to get the edges of the Orange image:
+imgCanny = cv2.Canny(imgOrangeCopy,100,300)
 
-if __name__ == '__main__':
-    main()
+#Finding contours
+contours, hierarchy = cv2.findContours(imgCanny, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+#Going through all the contours and filtering out using are
+for cnt in contours:
+    area = cv2.contourArea(cnt)
+    cv2.drawContours(imgOrangeCopy, cnt, -1, (255, 0, 255),3)
+    if area > 400:
+        peri = cv2.arcLength(cnt, True)
+        approx = cv2.approxPolyDP(cnt, 0.02 * peri, True)
+        x , y , w, h = cv2.boundingRect(approx)
+        cv2.rectangle(imgOrangeCopy, (x , y ), (x + w , y + h ), (0, 255, 0), 5)
+
+#Show results
+cv2.imshow('result', imgOrangeCopy)
+cv2.waitKey(0)
