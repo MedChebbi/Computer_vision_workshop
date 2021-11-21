@@ -61,7 +61,11 @@ while True:
             peri = cv2.arcLength(cnt, True)
             approx = cv2.approxPolyDP(cnt, 0.02 * peri, True)
             x , y , w, h = cv2.boundingRect(approx)
-            cv2.rectangle(img_copy, (x , y ), (x + w , y + h ), (0, 255, 0), 3)
+            #Draw a bounding box detecting the line
+            ####[CODE HERE]####
+            
+            #Lets calculate the "error" which is the offset of the line from the center
+            
     #Show results
     cv2.imshow('result', img)
     cv2.imshow('result_final', img_copy)

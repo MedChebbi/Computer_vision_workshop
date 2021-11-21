@@ -4,13 +4,15 @@ import numpy as np
 
 img_path = '../resources/images/lena.png'
 save_path = '../resources/images/lena_gray.png'
-img = cv2.imread(img_path, 0)
-print(img.shape)
-h , w = img.shape
-print('image height: ', h)
-print('image width: ', w)
-#Saving image
-cv2.imwrite(save_path, img)
-#Showing images
-cv2.imshow('image',img)
-cv2.waitKey(0)
+#Reading image: we will be using cv2.imread()
+####[CODE HERE]####
+
+# print(img.shape)
+# h , w , c= img.shape
+# print('image height: ', h)
+# print('image width: ', w)
+#Saving image: we will be using cv2.imwrite() method
+####[CODE HERE]####
+
+#Showing images: cv2.imshow()
+####[CODE HERE]####

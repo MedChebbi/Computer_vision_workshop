@@ -10,13 +10,15 @@ h , w, c = img.shape
 print("width: ",w)
 print("height: ",h)
 #Affine transformations
-#Flip
-flipped_img = cv2.flip(img, 1)
-#Rotate
-rot_img = cv2.rotate(img, cv2.ROTATE_180)
-#Zoom
-zoomed_img = img[h//4:3*h//4,w//4:3*w//4]
-zoomed_img = cv2.resize(zoomed_img, (w,h))
+#Flip: try cv2.flip()
+####[CODE HERE]####
+
+#Rotate: cv2.rotate()
+####[CODE HERE]####
+
+#Zoom: think about it, you already know the methods to use
+####[CODE HERE]####
+
 #Translate
 #We define our affine transformation matrix with the format:
 #
@@ -27,8 +29,9 @@ M = np.float32([
 	[1, 0, 25],
 	[0, 1, 50]
 ])
-#We translate the image over tx and ty
-shifted = cv2.warpAffine(img, M, (img.shape[1], img.shape[0]))
+#We translate the image over tx and ty: cv2.warpAffine()
+####[CODE HERE]####
+
 #Showing results
 cv2.imshow('img',img)
 cv2.imshow('translated_img',shifted)

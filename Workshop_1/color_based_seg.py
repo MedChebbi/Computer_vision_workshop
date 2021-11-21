@@ -6,12 +6,12 @@ def nothing(x):
     pass
 
 
-greenBGR = np.uint8([[[0,255,0 ]]])
-hsv_green = cv2.cvtColor(greenBGR,cv2.COLOR_BGR2HSV)
-print (hsv_green)
-
 img = cv2.imread('../resources/images/colors.png')
-imgHSV = cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
+# Convert the image color to the convinient color space
+####[CODE HERE]####
+
+#Let's try figuring out a threshold from a given RGB color
+####[CODE HERE]####
 
 #Green approx range in hsv: (40, 40,40) ~ (70, 255,255)
 #Red approx range in hsv: (10, 100, 20) ~ (25, 255, 255)
@@ -38,11 +38,14 @@ while True:
     min_V = cv2.getTrackbarPos("min_Volume", "Trackbars")
     max_V = cv2.getTrackbarPos("max_Volume", "Trackbars")
 
-    maskHSV = cv2.inRange(imgHSV,(min_H,min_S,min_V),(max_H,max_S,max_V))
-    kernel = np.ones ((3,3), np.uint8)
+    #Mask colors based on minimum and maximum threshold: use cv2.inRange()
+    ####[CODE HERE]####
+
+    #kernel = np.ones ((3,3), np.uint8)
     #imgEroded = cv2.erode(maskHSV, kernel, iterations=3)
     #imgDilated = cv2.dilate(imgEroded, kernel, iterations=3) #we used those filters to smooth the mask for a better detection
     
+    #We can fiter out what's not important 
     res = cv2.bitwise_and(img,img, mask= maskHSV)
     #Show results
     cv2.imshow('result', img)

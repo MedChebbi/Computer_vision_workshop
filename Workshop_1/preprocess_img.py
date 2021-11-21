@@ -8,13 +8,15 @@ save_path = '../resources/images/lena_resized.png'
 img = cv2.imread(img_path)
 # Extract image dimensions
 w , h , c = img.shape
-#Resizing image
-resized_img = cv2.resize(img, (w//2, h//2), interpolation=cv2.INTER_AREA)
-#converting image color
-gray_img = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-inv_img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
-#Cropping image
-cropped_img = img[100:,200:]
+#Resizing image: cv2.resize()
+####[CODE HERE]####
+
+#converting image color: cv2.cvtColor(), to switch color spaces we can use costants such as cv2.COLOR_BGR2GRAY
+####[CODE HERE]####
+
+#Cropping image: Deal with the image as if it's an nd array
+####[CODE HERE]####
+#cropped_img = 
 #Brightness and contrast change
 new_image = cv2.convertScaleAbs(img, alpha=0.75, beta=-30)
 #Showing results
