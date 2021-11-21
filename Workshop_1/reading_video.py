@@ -7,7 +7,7 @@ save_vid = True #A variable to tell when we want to save video
 
 #Initialize where to get video from: cv2.VideoCapture()
 ####[CODE HERE]####
-
+vid_cap = cv2.VideoCapture(0)
 if save_vid:
     #Extracting useful info from the video
     fps = vid_cap.get(cv2.CAP_PROP_FPS)
@@ -20,7 +20,7 @@ if save_vid:
 while(vid_cap.isOpened()):
     # Capture frame-by-frame using the .read() method on the video capture instance
     ####[CODE HERE]####
-    
+    frame = vid_cap.read()
     #frame = cv2.resize(frame, (w, h), interpolation=cv2.INTER_AREA)
     if ret:
         #Showing video, frame per frames
