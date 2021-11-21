@@ -3,7 +3,7 @@ import numpy as np
 
 #creating an empty image of zeros with 400 lines 500 columns 
 ####[CODE HERE]####
-
+imgRaw = np.zeros(400,500)
 #replacing the RGB values of the image all white
 ####[CODE HERE]####
 

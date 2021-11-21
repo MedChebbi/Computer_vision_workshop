@@ -9,7 +9,7 @@ def nothing(x):
 img = cv2.imread('../resources/images/colors.png')
 # Convert the image color to the convinient color space
 ####[CODE HERE]####
-
+imgHSV = cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
 #Let's try figuring out a threshold from a given RGB color
 ####[CODE HERE]####
 
@@ -18,7 +18,7 @@ img = cv2.imread('../resources/images/colors.png')
 #Blue approx range in hsv: (110,150,50) ~ (120,255,255)
 #initialize trackbar gui
 cv2.namedWindow("Trackbars")
-cv2.resizeWindow("Trackbars", 100, 100)
+cv2.resizeWindow("Trackbars", 400, 400)
 intialTracbarValueMin = 0 
 intialTracbarValueMax = 50 
 maxValue = 255
@@ -40,7 +40,7 @@ while True:
 
     #Mask colors based on minimum and maximum threshold: use cv2.inRange()
     ####[CODE HERE]####
-
+    maskHSV = cv2.inRange(imgHSV, (min_H,min_S,min_V), (max_H, max_S, max_V))
     #kernel = np.ones ((3,3), np.uint8)
     #imgEroded = cv2.erode(maskHSV, kernel, iterations=3)
     #imgDilated = cv2.dilate(imgEroded, kernel, iterations=3) #we used those filters to smooth the mask for a better detection

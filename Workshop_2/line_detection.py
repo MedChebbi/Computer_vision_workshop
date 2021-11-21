@@ -38,6 +38,7 @@ img = cv2.imread('../resources/images/colors.png')
 img_copy = img.copy()
 imgHSV = cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
 
+x_c, y_c = img.shape[1]//2, img.shape[0]//2
 #Black approx range in hsv: (0, 0, 0) ~ (180, 255, 30)
 #White approx range in hsv: (0, 0, 180) ~ (180, 0, 255)
 #Green approx range in hsv: (40, 40,40) ~ (70, 255,255)

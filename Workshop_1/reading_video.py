@@ -1,9 +1,9 @@
 import cv2
 
 
-vid_path ='../resources/videos/video_1.mp4'
+vid_path = '../resources/videos/video_1.mp4'
 save_path = '../resources/videos/video_test.mp4'
-save_vid = True #A variable to tell when we want to save video
+save_vid = False #A variable to tell when we want to save video
 
 #Initialize where to get video from: cv2.VideoCapture()
 ####[CODE HERE]####
@@ -20,12 +20,17 @@ if save_vid:
 while(vid_cap.isOpened()):
     # Capture frame-by-frame using the .read() method on the video capture instance
     ####[CODE HERE]####
-    frame = vid_cap.read()
+    ret, frame = vid_cap.read()
+    gray_img = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    print(gray_img.shape)
     #frame = cv2.resize(frame, (w, h), interpolation=cv2.INTER_AREA)
     if ret:
         #Showing video, frame per frames
         cv2.imshow("frame",frame)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+        cv2.imshow("Gray",gray_img)
+        key = cv2.waitKey(1)
+        
+        if key & 0xFF == ord('q'):
             break
     if save_vid:
         #Saving video frames
@@ -36,4 +41,3 @@ if save_vid: vid_writer.release()
 vid_cap.release()
 # Closes all the frames
 cv2.destroyAllWindows()
-    
