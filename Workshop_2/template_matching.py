@@ -10,8 +10,10 @@ methods = [cv2.TM_CCOEFF, cv2.TM_CCOEFF_NORMED, cv2.TM_CCORR,
 
 for method in methods:
     img2 = img.copy()
-
+    
+    #Apply template matching
     result = cv2.matchTemplate(img2, template, method)
+    #Get difference values and matches
     min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
     if method in [cv2.TM_SQDIFF, cv2.TM_SQDIFF_NORMED]:
         location = min_loc
