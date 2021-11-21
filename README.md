@@ -16,4 +16,8 @@
 ## Requirements
 - Numpy
 - OpenCv
-- Pizbar
+- Pizbar (first install libzbar0)
+
+For the raspberry pi you need to run:
+`sudo apt-get install python3-opencv libzbar0 python3-pip`
+`python3 -m pip install pyzbar`
