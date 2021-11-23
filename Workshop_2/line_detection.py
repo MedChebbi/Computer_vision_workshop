@@ -48,6 +48,13 @@ img = cv2.imread('../resources/images/black.jpg')
 img_copy = img.copy()
 imgHSV = cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
 
+x_c, y_c = img.shape[1]//2, img.shape[0]//2
+#Black approx range in hsv: (0, 0, 0) ~ (180, 255, 30)
+#White approx range in hsv: (0, 0, 180) ~ (180, 0, 255)
+#Green approx range in hsv: (40, 40,40) ~ (70, 255,255)
+#Red approx range in hsv: (10, 100, 20) ~ (25, 255, 255)
+#Blue approx range in hsv: (110,150,50) ~ (120,255,255)
+
 initialize_trackbars()
 
 while(vid_cap.isOpened()):
@@ -78,7 +85,7 @@ while(vid_cap.isOpened()):
             cv2.rectangle(img_copy, (x , y ), (x + w , y + h ), (0, 255, 0), 3)
     cv2.putText(img_copy,str(offset_x),(20,20), cv2.FONT_HERSHEY_COMPLEX, 0.7, (0,255,0))
     
-
+     
     #Show results
     #cv2.imshow('result', img)
     cv2.imshow('result_final', img_copy)

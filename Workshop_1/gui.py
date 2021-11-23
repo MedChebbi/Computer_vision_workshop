@@ -10,7 +10,7 @@ def nothing(x):
 def click_event(event, x, y, flag, params):
     '''function to display the coordinates of the points clicked on the image'''
 
-     # checking for left mouse clicks
+    # checking for left mouse clicks
     if event == cv2.EVENT_LBUTTONDOWN:
     
         #displaying the coordinates on the Shell
@@ -20,7 +20,7 @@ def click_event(event, x, y, flag, params):
 
 #initialize trackbar gui
 cv2.namedWindow("Trackbars")
-cv2.resizeWindow("Trackbars", 100, 100)
+cv2.resizeWindow("Trackbars", 400, 200)
 intialTracbarValue = 50 
 maxValue = 255
 cv2.createTrackbar("Example", "Trackbars", intialTracbarValue,maxValue, nothing)
@@ -28,7 +28,7 @@ cv2.createTrackbar("Example", "Trackbars", intialTracbarValue,maxValue, nothing)
 while True:
     extractedValue = cv2.getTrackbarPos("Example", "Trackbars")
 
-    #print (extractedValue)
+    print (extractedValue)
     cv2.imshow("img",img)
     cv2.setMouseCallback("img", click_event)
     if cv2.waitKey(1) & 0xFF == ord('q'):
