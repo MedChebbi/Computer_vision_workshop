@@ -10,6 +10,7 @@ h , w, c = img.shape
 print("width: ",w)
 print("height: ",h)
 #Affine transformations
+<<<<<<< HEAD
 #Flip: try cv2.flip()
 ####[CODE HERE]####
 flipped_img = cv2.flip(img,-1)
@@ -20,6 +21,15 @@ rot_img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
 ####[CODE HERE]####
 zoomed_img = img[100:400,100:400]
 zoomed_img = cv2.resize(zoomed_img,(w,h))
+=======
+#Flip
+flipped_img = cv2.flip(img, 1)
+#Rotate
+rot_img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
+#Zoom
+zoomed_img = img[h//4:3*h//4,w//4:3*w//4]
+zoomed_img = cv2.resize(zoomed_img, (w,h))
+>>>>>>> tested
 #Translate
 #We define our affine transformation matrix with the format:
 #

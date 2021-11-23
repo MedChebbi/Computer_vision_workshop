@@ -6,16 +6,22 @@ template_paths = [path+'lion.png',path+'monkey.png',path+'giraffe.png']
 template_images = []
 class_names = ['Lion', 'Monkey', 'Giraffe']
 
+# Creating a list of the template images read
 for img_path in template_paths:
-    current_img = cv2.imread(img_path,0)
+    current_img = cv2.imread(img_path, 0)
     template_images.append(current_img)
 
-
+# Initialising feature extractor
 orb = cv2.ORB_create(nfeatures=800)
+# Initialising feature matcher
 matcher = cv2.BFMatcher()
 
 
 def extract_features(images):
+    """
+    Input: list of template images
+    Return: list of features for each template
+    """
     feats_list = []
     for img in images:
         kp, des = orb.detectAndCompute(img, None)
@@ -24,6 +30,14 @@ def extract_features(images):
 
 
 def classify(imgGray, img, feats_list, thres=20):
+    """
+    Input:
+        imgGray: the grayscale image,
+        img: the colored image,
+        feats_list: the list of template features
+    Return:
+        detected: name of the class (string)
+    """
     kp2, des2 = orb.detectAndCompute(imgGray, None)
     match_list = []
     class_id = -1
@@ -43,14 +57,17 @@ def classify(imgGray, img, feats_list, thres=20):
     except:
         print('no matches found')
     if class_id!=-1:
+        detected = class_names[class_id]
+        print(detected)
         cv2.putText(img, class_names[class_id],(20,20),cv2.FONT_HERSHEY_COMPLEX, 0.7, (255,0,0), 1)
-    return class_id
+    return detected
 
 
-img = cv2.imread('../resources/images/full_image.png')
+#### On image ####
+img = cv2.imread('../resources/images/full_monkey.png')
 imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 feats_list = extract_features(template_images)
-id = classify(imgGray, img, feats_list) 
+detected = classify(imgGray, img, feats_list) 
 
 cv2.imshow("result",img)
 cv2.waitKey(0)
@@ -63,7 +80,7 @@ while(cap.isOpened()):
     ret, frame = cap.read()
     if ret:
         imgGray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        id = classify(imgGray, frame, feats_list) 
+        detected = classify(imgGray, frame, feats_list) 
 
         cv2.imshow("frame", frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
