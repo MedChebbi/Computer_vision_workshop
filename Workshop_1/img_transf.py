@@ -13,7 +13,7 @@ print("height: ",h)
 #Flip
 flipped_img = cv2.flip(img, 1)
 #Rotate
-rot_img = cv2.rotate(img, cv2.ROTATE_180)
+rot_img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
 #Zoom
 zoomed_img = img[h//4:3*h//4,w//4:3*w//4]
 zoomed_img = cv2.resize(zoomed_img, (w,h))
