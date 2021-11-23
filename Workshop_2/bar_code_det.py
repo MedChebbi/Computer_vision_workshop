@@ -3,27 +3,24 @@ import numpy as np
 from pyzbar.pyzbar import decode
 
 
-
+####### On image  #######
 # img = cv2.imread('../resources/images/monkey.png')
 # h = img.shape[0]
 # w = img.shape[1]
 
-
-    # # Capture frame-by-frame
-    
-    # for barcode in decode(img):
-    #     myData = barcode.data.decode('utf-8')
-    #     print(myData)
-    #     pts = np.array([barcode.polygon],np.int32)
-    #     pts = pts.reshape((-1,1,2))
-    #     cv2.polylines(frame,[pts],True,(255,0,255),2)
-    #     pts2 = barcode.rect
-    #     cv2.putText(frame,myData,(pts2[0],pts2[1]),cv2.FONT_HERSHEY_SIMPLEX,0.6,(255,0,255),1)
-    # cv2.imshow("image", frame)
+# for barcode in decode(img):
+#     myData = barcode.data.decode('utf-8')
+#     print(myData)
+#     pts = np.array([barcode.polygon],np.int32)
+#     pts = pts.reshape((-1,1,2))
+#     cv2.polylines(frame,[pts],True,(255,0,255),2)
+#     pts2 = barcode.rect
+#     cv2.putText(frame,myData,(pts2[0],pts2[1]),cv2.FONT_HERSHEY_SIMPLEX,0.6,(255,0,255),1)
+# cv2.imshow("image", frame)
     
     
 
-
+######## On video #######
 vid_cap = cv2.VideoCapture(0)
 
 while(True):
